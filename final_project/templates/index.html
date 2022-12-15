@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <style>
+        body {
+            text-align: center;
+            font-size: 3.2vw;
+            font-family: "Monaco";
+        }
+        .button {
+          background-color: #c3ebc7;
+          border: 2px solid #4CAF50;
+          color: black;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+    }
+    </style>
+</head>
+<body>
+    <h1>Library Database</h1>
+
+    <h2>Authors</h2>
+
+    <p>What would you like to do?</p>
+
+    <button class="button" type="button" onclick="window.location.href='{{url_for('authors_table')}}';">
+        View the table
+    </button>
+
+    <button class="button" type="button" onclick="window.location.href='{{url_for('a_insert')}}';">
+        Insert data
+    </button>
+
+    <button class="button" type="button" onclick="window.location.href='{{url_for('a_delete')}}';">
+        Delete an author's data
+    </button>
+
+    <button class="button" type="button" onclick="window.location.href='{{url_for('a_update')}}';">
+        Update an author's data
+    </button>
+
+    <button class="button" type="button" onclick="window.location.href='{{url_for('a_query')}}';">
+        Query data
+    </button>
+
+    <h2>Books</h2>
+
+    <p>What would you like to do?</p>
+
+    <button class="button" type="button" onclick="window.location.href='{{url_for('books_table')}}';">
+        View the table
+    </button>
+
+    <button class="button" type="button" onclick="window.location.href='{{url_for('b_insert')}}';">
+        Insert data
+    </button>
+
+    <button class="button" type="button" onclick="window.location.href='{{url_for('b_delete')}}';">
+        Delete a book's data
+    </button>
+
+    <button class="button" type="button" onclick="window.location.href='{{url_for('b_update')}}';">
+        Update a book's data
+    </button>
+
+    <button class="button" type="button" onclick="window.location.href='{{url_for('b_query')}}';">
+        Query data
+    </button>
+</body>
+</html>

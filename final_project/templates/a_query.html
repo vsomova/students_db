@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Query</title>
+    <style>
+        .alert {
+            padding: 20px;
+            margin: 5px;
+            color: #970020;
+            background-color: #ffd5de;
+        }
+        body {
+            margin-left: 5em;
+            font-size: 1.9vw;
+            font-family: "Monaco";
+        }
+        .button {
+            background-color: #c3ebc7;
+            border: 2px solid #4CAF50;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        input {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+        table, th, td {
+            border: 1px solid;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+<body>
+
+{% for message in get_flashed_messages() %}
+            <div class="alert">{{ message }}</div>
+        {% endfor %}
+
+    <form method="post">
+        <label for="name">Search by name:</label>
+        <br>
+        <input type="text" name="name"
+               placeholder="Name"
+               value="{{ request.form['name'] }}">
+        <br>
+
+        <button class="button" type="submit">Search</button>
+    </form>
+
+    <form method="post">
+        <label for="Other">Search by other info:</label>
+        <br>
+        <input type="text" name="addr"
+               placeholder="Address"
+               value="{{ request.form['addr'] }}">
+        <br>
+
+        <button class="button" type="submit">Search</button>
+    </form>
+
+{% if q %}
+<br>
+<table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for row in data%}
+            <tr>
+                <td>{{row[0]}}</td>
+                <td>{{row[1]}}</td>
+            </tr>
+        {%endfor%}
+        </tbody>
+    </table>
+{% endif %}
+
+    <br>
+    <button class="button" type="button" onclick="window.location.href='{{url_for('index')}}';">
+        Go back
+    </button>
+
+</body>
+</html>

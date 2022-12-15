@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update</title>
+    <style>
+        .alert {
+            padding: 20px;
+            margin: 5px;
+            color: #970020;
+            background-color: #ffd5de;
+        }
+        body {
+            margin-left: 5em;
+            font-size: 1.9vw;
+            font-family: "Monaco";
+        }
+        .button {
+            background-color: #c3ebc7;
+            border: 2px solid #4CAF50;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+        }
+        input {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+{% for message in get_flashed_messages() %}
+            <div class="alert">{{ message }}</div>
+        {% endfor %}
+
+<form method="post">
+        <label for="title">Enter the title to update a book's info:</label>
+        <br>
+        <input type="text" name="title"
+               placeholder="Title"
+               value="{{ request.form['title'] }}">
+        <br>
+
+        <label for="authorName">Enter the author name:</label>
+        <br>
+        <input type="text" name="authorName"
+               placeholder="Author name"
+               value="{{ request.form['authorName'] }}">
+        <br>
+
+        <button class="button" type="submit">Search</button>
+    </form>
+
+{% if upd %}
+    <form method="post">
+        <table>
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author name</th>
+                <th>Year</th>
+                <th>Genre</th>
+                <th>Format</th>
+                <th>Cover type</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for row in data%}
+                <tr>
+                    <td>{{row[0]}}</td>
+                    <td>{{row[1]}}</td>
+                    <td><input type="text" name="year" value="{{row[2]}}"></td>
+                    <td><input type="text" name="genre" value="{{row[3]}}"></td>
+                    <td><input type="text" name="format" value="{{row[4]}}"></td>
+                    <td><input type="text" name="coverType" value="{{row[5]}}"></td>
+                </tr>
+            {%endfor%}
+            </tbody>
+        </table>
+
+        <button class="button" type="submit">Update</button>
+        <input type='hidden' name='btitle' value='{{btitle }}'/>
+        <input type='hidden' name='bauthor' value='{{bauthor }}'/>
+
+
+    </form>
+{% endif %}
+<br>
+          <button class="button" type="button" onclick="window.location.href='{{url_for('index')}}';">
+        Go back
+    </button>
+    <br>
+
+
+</body>
+</html>
